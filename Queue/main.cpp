@@ -1,14 +1,17 @@
-//
-//  main.cpp
-//  Queue
-//
-//  Created by Mitch Campbell on 2022/10/07.
-//
-
 #include <iostream>
+#include "QueueADT.h"
+#include "QueueAsArray.h"
 
-int main(int argc, const char * argv[]) {
-	// insert code here...
-	std::cout << "Hello, World!\n";
+
+int main()
+{
+	QueueType<int> myQueue;
+	myQueue.addQueue(1);
+	myQueue.addQueue(2);
+	myQueue.addQueue(3);
+	myQueue.addQueue(4);
+	myQueue.addQueue(5);
+	
+
 	return 0;
 }

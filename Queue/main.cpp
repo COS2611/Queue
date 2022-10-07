@@ -11,7 +11,7 @@ int main()
 	myQueue.addQueue(3);
 	myQueue.addQueue(4);
 	myQueue.addQueue(5);
+	myQueue.printQueue();
 	
-
 	return 0;
 }

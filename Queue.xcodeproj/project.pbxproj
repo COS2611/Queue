@@ -25,6 +25,8 @@
 /* Begin PBXFileReference section */
 		5EDD72EB28EFD2290081F67B /* Queue */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Queue; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EDD72EE28EFD2290081F67B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5EDD72F528EFD3930081F67B /* QueueADT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueADT.h; sourceTree = "<group>"; };
+		5EDD72F628EFD3FD0081F67B /* QueueAsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueAsArray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,8 @@
 		5EDD72ED28EFD2290081F67B /* Queue */ = {
 			isa = PBXGroup;
 			children = (
+				5EDD72F628EFD3FD0081F67B /* QueueAsArray.h */,
+				5EDD72F528EFD3930081F67B /* QueueADT.h */,
 				5EDD72EE28EFD2290081F67B /* main.cpp */,
 			);
 			path = Queue;

@@ -54,6 +54,9 @@ public:
       //Postcondition: The queue is changed and the first element
       //    is removed from the queue.
 	
+	void printQueue() const;
+	// Print each element in the queue.
+	
     QueueType(int queueSize = 100);
       //Constructor
 
@@ -75,6 +78,16 @@ private:
                       //the queue elements 
 };
 
+
+template <class Type>
+void QueueType<Type>::printQueue() const
+{
+	for (size_t i = 0; i < count; i++)
+	{
+		std::cout << *list + i << " ";
+	}
+	std::cout << std::endl;
+}
 
 template <class Type>
 bool QueueType<Type>::isEmptyQueue() const

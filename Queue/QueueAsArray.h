@@ -54,7 +54,7 @@ public:
       //Postcondition: The queue is changed and the first element
       //    is removed from the queue.
 	
-	void printQueue() const;
+	void printQueue();
 	// Print each element in the queue.
 	
     QueueType(int queueSize = 100);
@@ -80,7 +80,7 @@ private:
 
 
 template <class Type>
-void QueueType<Type>::printQueue() const
+void QueueType<Type>::printQueue()
 {
 	for (size_t i = 0; i < count; i++)
 	{

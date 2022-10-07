@@ -45,6 +45,11 @@ public:
       //Precondition: The queue exists and is not empty.
       //Postcondition: The queue is changed and the first element
       //    is removed from the queue.
+	
+	virtual void printQueue() = 0;
+	// Prints each element in the queue.
+	// Linked list implementation modifies the queue,
+	// so this method is non-const.
 };
 
         

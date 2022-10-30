@@ -3,15 +3,17 @@
  
 #include <iostream>
 #include <cassert>
-
 #include "QueueADT.h"
+
+
 
 
 template <class Type>
 class QueueType: public QueueADT<Type>
 {
 public:
-    const QueueType<Type>& operator=(const QueueType<Type>&); 
+	
+    const QueueType<Type>& operator=(const QueueType<Type>&);
       //Overload the assignment operator.
 	
     bool isEmptyQueue() const;
@@ -57,6 +59,7 @@ public:
 	void printQueue();
 	// Print each element in the queue.
 	
+	
     QueueType(int queueSize = 100);
       //Constructor
 
@@ -74,8 +77,8 @@ private:
                       //element of the queue
     int queueRear;    //variable to point to the last
                       //element of the queue
-    Type *list;       //pointer to the array that holds 
-                      //the queue elements 
+    Type *list;       //pointer to the array that holds
+                      //the queue elements
 };
 
 
@@ -152,9 +155,11 @@ void QueueType<Type>::deleteQueue()
         std::cout << "Cannot remove from an empty queue" << std::endl;
 } //end deleteQueue
 
+
+
     //Constructor
 template <class Type>
-QueueType<Type>::QueueType(int queueSize)   
+QueueType<Type>::QueueType(int queueSize)
 {
     if (queueSize <= 0)
     {
@@ -165,7 +170,7 @@ QueueType<Type>::QueueType(int queueSize)
         maxQueueSize = 100;
     }
     else
-        maxQueueSize = queueSize;   //set maxQueueSize to 
+        maxQueueSize = queueSize;   //set maxQueueSize to
                                     //queueSize
 
     queueFront = 0;                 //initialize queueFront
@@ -177,14 +182,13 @@ QueueType<Type>::QueueType(int queueSize)
 
     //Destructor
 template <class Type>
-QueueType<Type>::~QueueType()   
+QueueType<Type>::~QueueType()
 {
     delete [] list;
 } //end destructor
 
 template <class Type>
-const QueueType<Type>& QueueType<Type>::operator=
-	                   (const QueueType<Type>& otherQueue)
+const QueueType<Type>& QueueType<Type>::operator= (const QueueType<Type>& otherQueue)
 {
     std::cout << "Write the definition of the function "
          << "to overload the assignment operator." << std::endl;
@@ -196,5 +200,40 @@ QueueType<Type>::QueueType(const QueueType<Type>& otherQueue)
     std::cout << "Write the definition of the copy constructor."
          << std::endl;
 } //end copy constructor
+
+
+template <class Type>
+bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
+// checks whether two queues are identical.
+// Postcondition: returns true if queues are identical
+// otherwise returns false.
+{
+	if (queue1.isEmptyQueue() && queue2.isEmptyQueue())	// both queues are empty
+	{
+		return true;
+	}
+	
+	else if (queue1.isEmptyQueue() || queue2.isEmptyQueue())	// either queue1 or queue2 is empty
+	{
+		return false;
+	}
+	
+	else if (!queue1.isEmptyQueue() && !queue2.isEmptyQueue())
+	{
+		if (queue1.front() != queue2.front())
+		{
+			return false;
+		}
+		return false;
+	}
+	
+	else
+	{
+		queue1.deleteQueue();
+		queue2.deleteQueue();
+		return (identicalQueue(queue1, queue2));
+	}
+}
+
 
 #endif

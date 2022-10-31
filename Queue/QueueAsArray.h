@@ -212,28 +212,26 @@ bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
 	{
 		return true;
 	}
-	
-	else if (queue1.isEmptyQueue() || queue2.isEmptyQueue())	// either queue1 or queue2 is empty
+
+	else if (queue1.isEmptyQueue() || queue2.isEmptyQueue())	// only one queue is empty
 	{
 		return false;
 	}
-	
-	else if (!queue1.isEmptyQueue() && !queue2.isEmptyQueue())
+
+	else // both queues are not empty
 	{
-		if (queue1.front() != queue2.front())
+		if (queue1.front() != queue2.front())	// the first elements differ
 		{
 			return false;
 		}
-		return false;
-	}
-	
-	else
-	{
+
+		// remove first element in each queue & recursive call
 		queue1.deleteQueue();
 		queue2.deleteQueue();
-		return (identicalQueue(queue1, queue2));
+		return identicalQueue(queue1, queue2);
 	}
 }
+
 
 
 #endif

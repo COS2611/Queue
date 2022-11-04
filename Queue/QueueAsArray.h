@@ -6,8 +6,6 @@
 #include "QueueADT.h"
 
 
-
-
 template <class Type>
 class QueueType: public QueueADT<Type>
 {
@@ -147,12 +145,16 @@ void QueueType<Type>::deleteQueue()
     if (!isEmptyQueue())
     {   
         count--;
+		// TODO: delete front list item before advancing queueFront
         queueFront = (queueFront + 1) % maxQueueSize; //use the
                         //mod operator to advance queueFront 
                         //because the array is circular 
     }
+	
     else
-        std::cout << "Cannot remove from an empty queue" << std::endl;
+	{
+		std::cout << "Cannot remove from an empty queue" << std::endl;
+	}
 } //end deleteQueue
 
 
@@ -231,7 +233,6 @@ bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
 		return identicalQueue(queue1, queue2);
 	}
 }
-
 
 
 #endif

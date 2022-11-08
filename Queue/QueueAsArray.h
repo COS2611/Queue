@@ -6,6 +6,11 @@
 #include "QueueADT.h"
 
 
+bool isInLanguageLQ2(std::string w);
+// checks whether a word, w is in the language L
+// where L = {a^n, bb^n}
+
+
 template <class Type>
 class QueueType: public QueueADT<Type>
 {
@@ -234,5 +239,37 @@ bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
 	}
 }
 
-
+bool isInLanguageLQ2(std::string w)
+{
+	QueueType<char> q;
+	int index = 0;
+	while (w[index] == 'a')
+	{
+		q.addQueue('x');
+		index++;
+	}
+	
+	// Special case: add an extra 'b', since L = {a^n, b^n+1}
+	if (w[index] == 'b')
+	{
+		q.addQueue('x');
+	}
+	
+	while (w[index] == 'b')
+	{
+		if (!q.isEmptyQueue())
+		{
+			if (q.front() == 'x')
+			{
+				q.deleteQueue();
+			}
+		}
+		else
+		{
+			return false;
+		}
+		index++;
+	}
+	return (index == w.length() && q.isEmptyQueue());
+}
 #endif

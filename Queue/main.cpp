@@ -38,10 +38,8 @@ void printQueue(QueueType<Type> &theQueue)
 }
 
 
-
-int main()
-{
-	// test case: COS2611-06-2020: Q5b
+// test case: COS2611-06-2020: Q5b
+static void testIsInLanguageLQ2() {
 	std::string a = "aaaabbbbb";
 	std::string b = "aaababbbbb";
 	std::string c = "aaaabbbbba";
@@ -51,6 +49,34 @@ int main()
 	std::cout << a + s1 << std::endl;
 	std::cout << b + s2 << std::endl;
 	std::cout << c + s3 << std::endl;
+}
+
+static void testIdenticalQ() {
+	QueueType<int> q1;
+	QueueType<int> q2;
+	
+	q1.addQueue(1);
+	q1.addQueue(2);
+	q1.addQueue(3);
+	
+	q2.addQueue(1);
+	q2.addQueue(2);
+	q2.addQueue(3);
+	
+	if (identicalQueue(q1, q2))
+	{
+		std::cout << "The queues are identical" << std::endl;
+	}
+	else
+	{
+		std::cout << "The queues are not identical" << std::endl;
+	}
+}
+
+int main()
+{
+	// test identicalQ
+	testIdenticalQ();
 	
 	return 0;
 }

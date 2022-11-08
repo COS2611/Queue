@@ -272,4 +272,5 @@ bool isInLanguageLQ2(std::string w)
 	}
 	return (index == w.length() && q.isEmptyQueue());
 }
+
 #endif

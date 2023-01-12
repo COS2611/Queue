@@ -13,7 +13,7 @@ void reverseQ(queueType<Type> &q)
 	// Step 1: deque all elements into the first stack
 	while (!q.isEmptyQueue())
 	{
-		localStack.push(q.front());
+		localStack.addQueue(q.front());
 		q.deleteQueue();
 	}
 
@@ -73,7 +73,7 @@ static void testIdenticalQ() {
 	}
 }
 
-int main()
+static void test_replaceItem()
 {
 	queueType<int> myQueue;
 	
@@ -92,6 +92,211 @@ int main()
 	std::cout << "My queue after replaceItem: ";
 	myQueue.printQueue();
 	std::cout << std::endl;
+}
+
+void test_replaceEverySecondItem()
+{
+	// Test case 0: Provided in exam question
+	queueType<int> myQueue;
+	
+	// add elements to queue
+	myQueue.addQueue(1);
+	myQueue.addQueue(3);
+	myQueue.addQueue(4);
+	myQueue.addQueue(6);
+	myQueue.addQueue(7);
+	myQueue.addQueue(8);
+	myQueue.addQueue(2);
+	
+	std::cout << "My queue before replaceEverySecondItem: ";
+	myQueue.printQueue();
+	
+	replaceEverySecondItem(myQueue, 0);
+	std::cout << "My queue after replaceEverySecondItem: ";
+	myQueue.printQueue();
+	
+	// Test case 1: Test the function with an empty queue.
+	queueType<int> q;
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 0);
+
+	// Test case 2: Test the function with a queue containing only one element.
+	q.addQueue(1);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 1);
+	assert(q.front() == 1);
+
+	// Test case 3: Test the function with a queue containing two elements.
+	q.addQueue(2);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 2);
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == 0);
+
+	// FIXME: Test case 4 causes replaceEverySecondItem to fail
+	// Test case 4: Test the function with a queue containing an odd number of elements.
+	q.addQueue(3);
+	q.addQueue(4);
+	q.addQueue(5);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 5);
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 4);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 5);
+
+
+	// Test case 5: Test the function with a queue containing an even number of elements.
+	q.addQueue(6);
+	q.addQueue(7);
+	q.addQueue(8);
+	q.addQueue(9);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 8);
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 4);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 5);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 8);
+	q.deleteQueue();
+	assert(q.front() == 0);
+
+	// Test case 6: Test the function with a queue containing all the same elements.
+	q.addQueue(9);
+	q.addQueue(9);
+	q.addQueue(9);
+	q.addQueue(9);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 8);
+	assert(q.front() == 9);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 9);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 9);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 9);
+	q.deleteQueue();
+	assert(q.front() == 0);
+
+	// Test case 7: Test the function with a queue containing all different elements.
+	q.addQueue(1);
+	q.addQueue(2);
+	q.addQueue(3);
+	q.addQueue(4);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 8);
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 3);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 4);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	
+	// Test case 8: Test the function with a queue containing a mix of different elements.
+	q.addQueue(5);
+	q.addQueue(6);
+	q.addQueue(7);
+	q.addQueue(8);
+	replaceEverySecondItem(q, 0);
+	assert(q.count == 8);
+	assert(q.front() == 5);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 7);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 8);
+	q.deleteQueue();
+	assert(q.front() == 0);
+	q.deleteQueue();
+	assert(q.front() == 5);
+	q.deleteQueue();
+	assert(q.front() == 0);
+
+	// Test case 9: Test the function with a queue containing a mix of different elements and the new item value equal to the minimum value.
+	q.addQueue(1);
+	q.addQueue(2);
+	q.addQueue(3);
+	q.addQueue(4);
+	replaceEverySecondItem(q, std::numeric_limits<int>::min());
+	assert(q.count == 8);
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::min());
+	q.deleteQueue();
+	assert(q.front() == 3);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::min());
+	q.deleteQueue();
+	assert(q.front() == 4);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::min());
+	q.deleteQueue();
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::min());
+
+	// Test case 10: Test the function with a queue containing a mix of different elements and the new item value equal to the maximum value.
+	q.addQueue(1);
+	q.addQueue(2);
+	q.addQueue(3);
+	q.addQueue(4);
+	replaceEverySecondItem(q, std::numeric_limits<int>::max());
+	assert(q.count == 8);
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::max());
+	q.deleteQueue();
+	assert(q.front() == 3);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::max());
+	q.deleteQueue();
+	assert(q.front() == 4);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::max());
+	q.deleteQueue();
+	assert(q.front() == 1);
+	q.deleteQueue();
+	assert(q.front() == std::numeric_limits<int>::max());
+	
+	std::cout << "All test cases passed for replaceEverySecondItem!\n";
+}
+
+
+int main()
+{
+	test_replaceEverySecondItem();
 	
 	return 0;
 }

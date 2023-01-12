@@ -3,7 +3,7 @@
  
 #include <iostream>
 #include <cassert>
-#include "queueADT.h"
+#include "QueueADT.h"
 
 
 bool isInLanguageLQ2(std::string w);
@@ -14,8 +14,10 @@ bool isInLanguageLQ2(std::string w);
 template <class Type>
 class queueType: public queueADT<Type>
 {
-public:
+	friend void test_replaceEverySecondItem();
 	
+public:
+
     const queueType<Type>& operator=(const queueType<Type>&);
       //Overload the assignment operator.
 	
@@ -273,6 +275,40 @@ bool isInLanguageLQ2(std::string w)
 	return (index == w.length() && q.isEmptyQueue());
 }
 
+//Write a function template, replaceEverySecondItem that replaces every second item in a queue with the newItem.
+template <class Type>
+void replaceEverySecondItem(queueType<Type>& q, const Type& newItem)
+{
+	queueType<Type> tempQueue;
+	
+	// push all queue elements into tempQueue
+	while (!q.isEmptyQueue())
+	{
+		tempQueue.addQueue(q.front());
+		q.deleteQueue();
+		
+		// the textbook class method implementation prevents this code from running as expected
+		// see QueueSTL project for solution using STL
+	}
+	
+	// conditionally push the elements back into the oroginal queue
+	unsigned int itemPosition = 0;
+	while (!tempQueue.isEmptyQueue())
+	{
+		if (itemPosition % 2 == 0)
+		{
+			q.addQueue(tempQueue.front());
+		}
+		
+		else
+		{
+			q.addQueue(newItem);
+		}
+		
+		tempQueue.deleteQueue();
+		itemPosition++;
+	}
+}
 
 template <class Type>
 void replaceItem(queueType<Type>& queue, const Type& oldItem, const Type& newItem)

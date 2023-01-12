@@ -1,5 +1,5 @@
-#ifndef H_queueADT
-#define H_queueADT
+#ifndef H_QueueADT
+#define H_QueueADT
   
 
 template <class Type>

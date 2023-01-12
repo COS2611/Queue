@@ -3,7 +3,7 @@
  
 #include <iostream>
 #include <cassert>
-#include "QueueADT.h"
+#include "queueADT.h"
 
 
 bool isInLanguageLQ2(std::string w);
@@ -12,11 +12,11 @@ bool isInLanguageLQ2(std::string w);
 
 
 template <class Type>
-class QueueType: public QueueADT<Type>
+class queueType: public queueADT<Type>
 {
 public:
 	
-    const QueueType<Type>& operator=(const QueueType<Type>&);
+    const queueType<Type>& operator=(const queueType<Type>&);
       //Overload the assignment operator.
 	
     bool isEmptyQueue() const;
@@ -63,13 +63,13 @@ public:
 	// Print each element in the queue.
 	
 	
-    QueueType(int queueSize = 100);
+    queueType(int queueSize = 100);
       //Constructor
 
-    QueueType(const QueueType<Type>& otherQueue);
+    queueType(const queueType<Type>& otherQueue);
       //Copy constructor
 
-    ~QueueType();
+    ~queueType();
       //Destructor
 
 private:
@@ -86,7 +86,7 @@ private:
 
 
 template <class Type>
-void QueueType<Type>::printQueue()
+void queueType<Type>::printQueue()
 {
 	for (size_t i = 0; i < count; i++)
 	{
@@ -96,19 +96,19 @@ void QueueType<Type>::printQueue()
 }
 
 template <class Type>
-bool QueueType<Type>::isEmptyQueue() const
+bool queueType<Type>::isEmptyQueue() const
 {
     return (count == 0);
 } //end isEmptyQueue
 
 template <class Type>
-bool QueueType<Type>::isFullQueue() const
+bool queueType<Type>::isFullQueue() const
 {
     return (count == maxQueueSize);
 } //end isFullQueue
 
 template <class Type>
-void QueueType<Type>::initializeQueue()
+void queueType<Type>::initializeQueue()
 {
     queueFront = 0;
     queueRear = maxQueueSize - 1;
@@ -116,21 +116,21 @@ void QueueType<Type>::initializeQueue()
 } //end initializeQueue
 
 template <class Type>
-Type QueueType<Type>::front() const
+Type queueType<Type>::front() const
 {
     assert(!isEmptyQueue());
     return list[queueFront]; 
 } //end front
 
 template <class Type>
-Type QueueType<Type>::back() const
+Type queueType<Type>::back() const
 {
     assert(!isEmptyQueue());
     return list[queueRear];
 } //end back
 
 template <class Type>
-void QueueType<Type>::addQueue(const Type& newElement)
+void queueType<Type>::addQueue(const Type& newElement)
 {
     if (!isFullQueue())
     {   
@@ -145,7 +145,7 @@ void QueueType<Type>::addQueue(const Type& newElement)
 } //end addQueue
 
 template <class Type>
-void QueueType<Type>::deleteQueue()
+void queueType<Type>::deleteQueue()
 {
     if (!isEmptyQueue())
     {   
@@ -166,7 +166,7 @@ void QueueType<Type>::deleteQueue()
 
     //Constructor
 template <class Type>
-QueueType<Type>::QueueType(int queueSize)
+queueType<Type>::queueType(int queueSize)
 {
     if (queueSize <= 0)
     {
@@ -189,20 +189,20 @@ QueueType<Type>::QueueType(int queueSize)
 
     //Destructor
 template <class Type>
-QueueType<Type>::~QueueType()
+queueType<Type>::~queueType()
 {
     delete [] list;
 } //end destructor
 
 template <class Type>
-const QueueType<Type>& QueueType<Type>::operator= (const QueueType<Type>& otherQueue)
+const queueType<Type>& queueType<Type>::operator= (const queueType<Type>& otherQueue)
 {
     std::cout << "Write the definition of the function "
          << "to overload the assignment operator." << std::endl;
 } //end assignment operator
 
 template <class Type>
-QueueType<Type>::QueueType(const QueueType<Type>& otherQueue)
+queueType<Type>::queueType(const queueType<Type>& otherQueue)
 {
     std::cout << "Write the definition of the copy constructor."
          << std::endl;
@@ -210,7 +210,7 @@ QueueType<Type>::QueueType(const QueueType<Type>& otherQueue)
 
 
 template <class Type>
-bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
+bool identicalQueue(queueType<Type> &queue1, queueType<Type> &queue2)
 // checks whether two queues are identical.
 // Postcondition: returns true if queues are identical
 // otherwise returns false.
@@ -241,7 +241,7 @@ bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
 
 bool isInLanguageLQ2(std::string w)
 {
-	QueueType<char> q;
+	queueType<char> q;
 	int index = 0;
 	while (w[index] == 'a')
 	{
@@ -271,6 +271,50 @@ bool isInLanguageLQ2(std::string w)
 		index++;
 	}
 	return (index == w.length() && q.isEmptyQueue());
+}
+
+
+template <class Type>
+void replaceItem(queueType<Type>& queue, const Type& oldItem, const Type& newItem)
+{
+	/* Function replaces every occurrence of an item in a queue
+	 
+	 This function behaves as expected using std::queue and its methods.
+	 However, the queue elements are not replaced when using queueType due to the way the
+	 class methods are implemented in Data Structures Using C++ 2nd Edition - DS Malik.
+	 For the purposes of answering the question, this is one solution.
+	 
+	 Also note the following equivalences:
+	 queueType::isEmptyQueue() = std::queue::empty()
+	 queueType::front() = std::queue::front()
+	 queueType::addQueue() = std::queue::push()
+	 queueType::deleteQueue() = std::queue::pop()
+	 */
+	
+	queueType<Type> tempQueue;
+	
+	
+	// Conditionally move queue elements into a temporary queue
+	while (!queue.isEmptyQueue())
+	{
+		if (queue.front() == oldItem)
+		{
+			tempQueue.addQueue(newItem);
+		}
+		
+		else
+		{
+			tempQueue.addQueue(queue.front());
+		}
+		queue.deleteQueue();
+	}
+	
+	// Move all queue elements back to original queue
+	while (!tempQueue.isEmptyQueue())
+	{
+		queue.addQueue(tempQueue.front());
+		tempQueue.deleteQueue();
+	}
 }
 
 #endif

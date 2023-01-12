@@ -3,7 +3,7 @@
  
 #include <iostream>
 #include <cassert>
-#include "QueueADT.h"
+#include "queueADT.h"
 
 //Definition of the node
 template <class Type>
@@ -14,11 +14,11 @@ struct NodeType
 };
 
 template <class Type>
-class LinkedQueueType: public QueueADT<Type>
+class LinkedqueueType: public queueADT<Type>
 {
 public:
-    const LinkedQueueType<Type>& operator=
-                    (const LinkedQueueType<Type>&); 
+    const LinkedqueueType<Type>& operator=
+                    (const LinkedqueueType<Type>&); 
       //Overload the assignment operator.
 
     bool isEmptyQueue() const;
@@ -64,13 +64,13 @@ public:
 	void printQueue();
 	// Prints each element in the queue.
 
-    LinkedQueueType(); 
+    LinkedqueueType(); 
       //Default constructor
 
-    LinkedQueueType(const LinkedQueueType<Type>& otherQueue); 
+    LinkedqueueType(const LinkedqueueType<Type>& otherQueue); 
       //Copy constructor
 
-    ~LinkedQueueType(); 
+    ~LinkedqueueType(); 
       //Destructor
 
 private:
@@ -80,7 +80,7 @@ private:
 
 
 template <class Type>
-void LinkedQueueType<Type>::printQueue()
+void LinkedqueueType<Type>::printQueue()
 {
 	while (!isEmptyQueue())
 	{
@@ -92,26 +92,26 @@ void LinkedQueueType<Type>::printQueue()
 
     //Default constructor
 template<class Type>
-LinkedQueueType<Type>::LinkedQueueType() 
+LinkedqueueType<Type>::LinkedqueueType() 
 {
     queueFront = NULL; //set front to null
     queueRear = NULL;  //set rear to null
 } //end default constructor
 
 template<class Type>
-bool LinkedQueueType<Type>::isEmptyQueue() const
+bool LinkedqueueType<Type>::isEmptyQueue() const
 {
     return(queueFront == NULL);
 } //end 
 
 template<class Type>
-bool LinkedQueueType<Type>::isFullQueue() const
+bool LinkedqueueType<Type>::isFullQueue() const
 {
     return false;
 } //end isFullQueue
 
 template <class Type>
-void LinkedQueueType<Type>::initializeQueue()
+void LinkedqueueType<Type>::initializeQueue()
 {
     NodeType<Type> *temp;
 
@@ -130,7 +130,7 @@ void LinkedQueueType<Type>::initializeQueue()
 
 
 template <class Type>
-void LinkedQueueType<Type>::addQueue(const Type& newElement)
+void LinkedqueueType<Type>::addQueue(const Type& newElement)
 {
     NodeType<Type> *newNode;
 
@@ -152,21 +152,21 @@ void LinkedQueueType<Type>::addQueue(const Type& newElement)
 }//end addQueue
 
 template <class Type>
-Type LinkedQueueType<Type>::front() const
+Type LinkedqueueType<Type>::front() const
 {
     assert(queueFront != NULL);
     return queueFront->info; 
 } //end front
 
 template <class Type>
-Type LinkedQueueType<Type>::back() const
+Type LinkedqueueType<Type>::back() const
 {
     assert(queueRear!= NULL);
     return queueRear->info;
 } //end back
 
 template <class Type>
-void LinkedQueueType<Type>::deleteQueue()
+void LinkedqueueType<Type>::deleteQueue()
 {
     NodeType<Type> *temp;
    
@@ -189,14 +189,14 @@ void LinkedQueueType<Type>::deleteQueue()
 
     //Destructor
 template <class Type>
-LinkedQueueType<Type>::~LinkedQueueType() 
+LinkedqueueType<Type>::~LinkedqueueType() 
 {
     //Write the definition of the destructor
 } //end destructor
 
 template <class Type>
-const LinkedQueueType<Type>& LinkedQueueType<Type>::operator=
-                    (const LinkedQueueType<Type>& otherQueue)
+const LinkedqueueType<Type>& LinkedqueueType<Type>::operator=
+                    (const LinkedqueueType<Type>& otherQueue)
 {
     //Write the definition of to overload the assignment operator
 
@@ -204,8 +204,8 @@ const LinkedQueueType<Type>& LinkedQueueType<Type>::operator=
 
 	//copy constructor
 template <class Type>
-LinkedQueueType<Type>::LinkedQueueType
-                 (const LinkedQueueType<Type>& otherQueue) 
+LinkedqueueType<Type>::LinkedqueueType
+                 (const LinkedqueueType<Type>& otherQueue) 
 {
     //Write the definition of the copy constructor
 }//end copy constructor

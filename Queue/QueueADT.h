@@ -1,9 +1,9 @@
-#ifndef H_QueueADT
-#define H_QueueADT
+#ifndef H_queueADT
+#define H_queueADT
   
 
 template <class Type>
-class QueueADT
+class queueADT
 {
 public:
     virtual bool isEmptyQueue() const = 0;

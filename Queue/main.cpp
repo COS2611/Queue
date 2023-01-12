@@ -1,12 +1,12 @@
 #include <iostream>
-#include "QueueADT.h"
+#include "queueADT.h"
 #include "QueueAsArray.h"
 #include "LinkedQueue.h"
 
 #include <stack>
 
 template <class Type>
-void reverseQ(QueueType<Type> &q)
+void reverseQ(queueType<Type> &q)
 {
 	std::stack<Type> localStack;
 
@@ -27,7 +27,7 @@ void reverseQ(QueueType<Type> &q)
 
 
 template <class Type>
-void printQueue(QueueType<Type> &theQueue)
+void printQueue(queueType<Type> &theQueue)
 {
 	while (!theQueue.isEmptyQueue())
 	{
@@ -52,13 +52,13 @@ static void testIsInLanguageLQ2() {
 }
 
 static void testIdenticalQ() {
-	QueueType<int> q1;
-	QueueType<int> q2;
+	queueType<int> q1;
+	queueType<int> q2;
 	
 	q1.addQueue(1);
 	q1.addQueue(2);
 	q1.addQueue(3);
-	
+
 	q2.addQueue(1);
 	q2.addQueue(2);
 	q2.addQueue(3);
@@ -75,8 +75,23 @@ static void testIdenticalQ() {
 
 int main()
 {
-	// test identicalQ
-	testIdenticalQ();
+	queueType<int> myQueue;
+	
+	myQueue.addQueue(1);
+	myQueue.addQueue(2);
+	myQueue.addQueue(2);
+	myQueue.addQueue(10);
+	myQueue.addQueue(22);
+	
+	std::cout << "My queue before replaceItem: ";
+	myQueue.printQueue();
+	std::cout << std::endl;
+	
+	replaceItem(myQueue, 2, 8);
+	
+	std::cout << "My queue after replaceItem: ";
+	myQueue.printQueue();
+	std::cout << std::endl;
 	
 	return 0;
 }

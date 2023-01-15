@@ -217,97 +217,21 @@ bool identicalQueue(queueType<Type> &queue1, queueType<Type> &queue2)
 // Postcondition: returns true if queues are identical
 // otherwise returns false.
 {
-	if (queue1.isEmptyQueue() && queue2.isEmptyQueue())	// both queues are empty
-	{
-		return true;
-	}
-
-	else if (queue1.isEmptyQueue() || queue2.isEmptyQueue())	// only one queue is empty
-	{
-		return false;
-	}
-
-	else // both queues are not empty
-	{
-		if (queue1.front() != queue2.front())	// the first elements differ
-		{
-			return false;
-		}
-
-		// remove first element in each queue & recursive call
-		queue1.deleteQueue();
-		queue2.deleteQueue();
-		return identicalQueue(queue1, queue2);
-	}
+	// TODO: implement me
+	return NULL;
 }
 
 bool isInLanguageLQ2(std::string w)
 {
-	queueType<char> q;
-	int index = 0;
-	while (w[index] == 'a')
-	{
-		q.addQueue('x');
-		index++;
-	}
-	
-	// Special case: add an extra 'b', since L = {a^n, b^n+1}
-	if (w[index] == 'b')
-	{
-		q.addQueue('x');
-	}
-	
-	while (w[index] == 'b')
-	{
-		if (!q.isEmptyQueue())
-		{
-			if (q.front() == 'x')
-			{
-				q.deleteQueue();
-			}
-		}
-		else
-		{
-			return false;
-		}
-		index++;
-	}
-	return (index == w.length() && q.isEmptyQueue());
+	// TODO: implement me
+	return NULL;
 }
 
 //Write a function template, replaceEverySecondItem that replaces every second item in a queue with the newItem.
 template <class Type>
 void replaceEverySecondItem(queueType<Type>& q, const Type& newItem)
 {
-	queueType<Type> tempQueue;
-	
-	// push all queue elements into tempQueue
-	while (!q.isEmptyQueue())
-	{
-		tempQueue.addQueue(q.front());
-		q.deleteQueue();
-		
-		// the textbook class method implementation prevents this code from running as expected
-		// see QueueSTL project for solution using STL
-	}
-	
-	// conditionally push the elements back into the oroginal queue
-	unsigned int itemPosition = 0;
-	while (!tempQueue.isEmptyQueue())
-	{
-		if (itemPosition % 2 == 0)
-		{
-			q.addQueue(tempQueue.front());
-		}
-		
-		else
-		{
-			q.addQueue(newItem);
-		}
-		
-		tempQueue.deleteQueue();
-		itemPosition++;
-	}
+	// TODO: implement me
 }
 
 template <class Type>
@@ -327,30 +251,7 @@ void replaceItem(queueType<Type>& queue, const Type& oldItem, const Type& newIte
 	 queueType::deleteQueue() = std::queue::pop()
 	 */
 	
-	queueType<Type> tempQueue;
-	
-	
-	// Conditionally move queue elements into a temporary queue
-	while (!queue.isEmptyQueue())
-	{
-		if (queue.front() == oldItem)
-		{
-			tempQueue.addQueue(newItem);
-		}
-		
-		else
-		{
-			tempQueue.addQueue(queue.front());
-		}
-		queue.deleteQueue();
-	}
-	
-	// Move all queue elements back to original queue
-	while (!tempQueue.isEmptyQueue())
-	{
-		queue.addQueue(tempQueue.front());
-		tempQueue.deleteQueue();
-	}
+	// TODO: implement me
 }
 
 #endif

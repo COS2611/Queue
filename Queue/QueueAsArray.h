@@ -221,10 +221,37 @@ bool identicalQueue(queueType<Type> &queue1, queueType<Type> &queue2)
 	return NULL;
 }
 
+
+// L = {a^n b^n+1}
 bool isInLanguageLQ2(std::string w)
 {
-	// TODO: implement me
-	return NULL;
+	queueType<char> q;
+	int index = 0;
+	
+	while (w[index] == 'a')
+	{
+		q.addQueue('x');
+		index++;
+	}
+	
+	if (w[index] == 'b')
+	{
+		q.addQueue('x');
+	}
+	
+	while (w[index] == 'b')
+	{
+		if (!q.isEmptyQueue() && q.front() == 'x')
+		{
+			q.deleteQueue();
+		}
+		else
+		{
+			return false;
+		}
+		index++;
+	}
+	return (index == w.length() && q.isEmptyQueue());
 }
 
 //Write a function template, replaceEverySecondItem that replaces every second item in a queue with the newItem.

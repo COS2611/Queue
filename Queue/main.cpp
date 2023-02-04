@@ -39,16 +39,29 @@ void printQueue(queueType<Type> &theQueue)
 
 
 // test case: COS2611-06-2020: Q5b
-static void testIsInLanguageLQ2() {
-	std::string a = "aaaabbbbb";
-	std::string b = "aaababbbbb";
-	std::string c = "aaaabbbbba";
+static void testIsInLanguageLQ2()
+{
+	std::string a = "abb";
+	std::string b = "aabbb";
+	std::string c = "aaaabbbbb";
+	std::string d = "aaaabbbbba";
+	std::string e = "aaaabbbbb";
+	std::string f = "aaababbbbb";	// FIXME: this string should be rejected
+	std::string g = "aaaabbbbba";
 	std::string s1 = isInLanguageLQ2(a) ? " is ACCEPTED" : " is REJECTED";
 	std::string s2 = isInLanguageLQ2(b) ? " is ACCEPTED" : " is REJECTED";
 	std::string s3 = isInLanguageLQ2(c) ? " is ACCEPTED" : " is REJECTED";
+	std::string s4 = isInLanguageLQ2(d) ? " is ACCEPTED" : " is REJECTED";
+	std::string s5 = isInLanguageLQ2(e) ? " is ACCEPTED" : " is REJECTED";
+	std::string s6 = isInLanguageLQ2(f) ? " is ACCEPTED" : " is REJECTED";
+	std::string s7 = isInLanguageLQ2(g) ? " is ACCEPTED" : " is REJECTED";
 	std::cout << a + s1 << std::endl;
 	std::cout << b + s2 << std::endl;
 	std::cout << c + s3 << std::endl;
+	std::cout << d + s4 << std::endl;
+	std::cout << e + s1 << std::endl;
+	std::cout << f + s2 << std::endl;
+	std::cout << g + s3 << std::endl;
 }
 
 static void testIdenticalQ() {
@@ -296,7 +309,8 @@ void test_replaceEverySecondItem()
 
 int main()
 {
-	test_replaceEverySecondItem();
+//	test_replaceEverySecondItem();
+	testIsInLanguageLQ2();
 	
 	return 0;
 }

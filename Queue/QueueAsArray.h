@@ -14,8 +14,6 @@ bool isInLanguageLQ2(std::string w);
 template <class Type>
 class queueType: public queueADT<Type>
 {
-	friend void test_replaceEverySecondItem();
-	
 public:
 
     const queueType<Type>& operator=(const queueType<Type>&);
@@ -84,7 +82,17 @@ private:
                       //element of the queue
     Type *list;       //pointer to the array that holds
                       //the queue elements
+	
+public:
+	int getCount() const;
 };
+
+
+template <class Type>
+int queueType<Type>::getCount() const
+{
+	return count;
+}
 
 
 template <class Type>
@@ -258,7 +266,36 @@ bool isInLanguageLQ2(std::string w)
 template <class Type>
 void replaceEverySecondItem(queueType<Type>& q, const Type& newItem)
 {
-	// TODO: implement me
+	// if queue is empty
+	if (q.isEmptyQueue())
+	{
+		std::cout << "The queue is empty.\n";
+	}
+	
+	else
+	{
+		queueType<Type> tempQueue;
+		while (!q.isEmptyQueue())
+		{
+			tempQueue.addQueue(q.front());	// push
+			q.deleteQueue();				// pop
+		}
+		
+		int index = 0;
+		while (!tempQueue.isEmptyQueue())
+		{
+			if (index % 2 == 0)
+			{
+				q.addQueue(tempQueue.front());
+			}
+			else
+			{
+				q.addQueue(newItem);
+			}
+			tempQueue.deleteQueue();
+			index++;
+		}
+	}
 }
 
 template <class Type>

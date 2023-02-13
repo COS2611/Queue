@@ -28,6 +28,7 @@
 		5EDD72F528EFD3930081F67B /* QueueADT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueADT.h; sourceTree = "<group>"; };
 		5EDD72F628EFD3FD0081F67B /* QueueAsArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueAsArray.h; sourceTree = "<group>"; };
 		5EDD72F828F00F1F0081F67B /* LinkedQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedQueue.h; sourceTree = "<group>"; };
+		5EDF1020299A89540042FE91 /* tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 				5EDD72F828F00F1F0081F67B /* LinkedQueue.h */,
 				5EDD72F528EFD3930081F67B /* QueueADT.h */,
 				5EDD72EE28EFD2290081F67B /* main.cpp */,
+				5EDF1020299A89540042FE91 /* tests.h */,
 			);
 			path = Queue;
 			sourceTree = "<group>";

@@ -246,6 +246,29 @@ bool identicalQueue(queueType<Type> &queue1, queueType<Type> &queue2)
 }
 
 
+template <class Type>
+bool identicalQueueIterative(queueType<Type> &queue1, queueType<Type> &queue2)
+{
+	/* The following condition checks whether the queue sizes are different.This is necessary if one queue is shorter than the other, otherwise this function will lead to undefined behaviour.
+	This condition requires modifying the class to allow access to the number of items in the queue. For exam purposes it cannot be incorporated into the function, so it should be left out */
+	if (queue1.getCount() != queue2.getCount())	// queues differ in size
+	{
+		return false;
+	}
+
+	while (!queue1.isEmptyQueue() && !queue2.isEmptyQueue())
+	{
+		if (queue1.front() != queue2.front()) // current element differs
+		{
+			return false;
+		}
+		queue1.deleteQueue();
+		queue2.deleteQueue();
+	}
+	return true;	// returns true when both queues are empty
+}
+
+
 // L = {a^n b^n+1}
 bool isInLanguageLQ2(std::string w)
 {

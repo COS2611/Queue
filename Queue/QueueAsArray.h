@@ -220,13 +220,36 @@ queueType<Type>::queueType(const queueType<Type>& otherQueue)
 
 
 template <class Type>
-bool identicalQueue(queueType<Type> &queue1, queueType<Type> &queue2)
+bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
 // checks whether two queues are identical.
 // Postcondition: returns true if queues are identical
 // otherwise returns false.
 {
-	// TODO: implement me
-	return NULL;
+	if (queue1.isEmptyQueue() && queue2.isEmptyQueue())	// both queues are empty
+	{
+		return true;
+	}
+	
+	else if (queue1.isEmptyQueue() || queue2.isEmptyQueue())	// either queue1 or queue2 is empty
+	{
+		return false;
+	}
+	
+	else if (!queue1.isEmptyQueue() && !queue2.isEmptyQueue())
+	{
+		if (queue1.front() != queue2.front())
+		{
+			return false;
+		}
+		return false;
+	}
+	
+	else
+	{
+		queue1.deleteQueue();
+		queue2.deleteQueue();
+		return (identicalQueue(queue1, queue2));
+	}
 }
 
 
@@ -315,7 +338,29 @@ void replaceItem(queueType<Type>& queue, const Type& oldItem, const Type& newIte
 	 queueType::deleteQueue() = std::queue::pop()
 	 */
 	
-	// TODO: implement me
+	queueType<Type> tempQueue;
+	// Conditionally move queue elements into a temporary queue
+	while (!queue.isEmptyQueue())
+	{
+		if (queue.front() == oldItem)
+		{
+			tempQueue.addQueue(newItem);
+		}
+		
+		else
+		{
+			tempQueue.addQueue(queue.front());
+		}
+		queue.deleteQueue();
+	}
+	
+	// Move all queue elements back to original queue
+	while (!tempQueue.isEmptyQueue())
+	{
+		queue.addQueue(tempQueue.front());
+		tempQueue.deleteQueue();
+	}
 }
+
 
 #endif

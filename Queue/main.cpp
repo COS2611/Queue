@@ -44,7 +44,8 @@ static void printQueue(queueType<Type> theQueue)
 int main()
 {
 //	testIsInLanguageLQ2();
-	testIdenticalQ();
+	testIdenticalQueue();
+	testIdenticalQueueIterative();
 //	test_replaceItem();
 //	test_replaceEverySecondItem();
 	

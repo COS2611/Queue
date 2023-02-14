@@ -220,7 +220,7 @@ queueType<Type>::queueType(const queueType<Type>& otherQueue)
 
 
 template <class Type>
-bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
+bool identicalQueue(queueType<Type> &queue1, queueType<Type> &queue2)
 // checks whether two queues are identical.
 // Postcondition: returns true if queues are identical
 // otherwise returns false.
@@ -235,21 +235,14 @@ bool identicalQueue(QueueType<Type> &queue1, QueueType<Type> &queue2)
 		return false;
 	}
 	
-	else if (!queue1.isEmptyQueue() && !queue2.isEmptyQueue())
+	else if (queue1.front() != queue2.front())
 	{
-		if (queue1.front() != queue2.front())
-		{
-			return false;
-		}
 		return false;
 	}
 	
-	else
-	{
-		queue1.deleteQueue();
-		queue2.deleteQueue();
-		return (identicalQueue(queue1, queue2));
-	}
+	queue1.deleteQueue();
+	queue2.deleteQueue();
+	return (identicalQueue(queue1, queue2));
 }
 
 

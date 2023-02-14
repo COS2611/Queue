@@ -34,26 +34,69 @@ static void testIsInLanguageLQ2()
 	std::cout << g + s3 << std::endl;
 }
 
-static void testIdenticalQ() {
-	queueType<int> q1;
-	queueType<int> q2;
-	
-	q1.addQueue(1);
-	q1.addQueue(2);
-	q1.addQueue(3);
-
-	q2.addQueue(1);
-	q2.addQueue(2);
-	q2.addQueue(3);
-	
-	if (identicalQueue(q1, q2))
+static void testIdenticalQ()
+{
+	//	Test case 1: both queues are empty
 	{
-		std::cout << "The queues are identical" << std::endl;
+		queueType<int> queue1, queue2;
+		bool result = identicalQueue(queue1, queue2);
+		assert(result == true);
 	}
-	else
+	
+	// Test case 2: One queue is empty
 	{
-		std::cout << "The queues are not identical" << std::endl;
+		queueType<int> queue1, queue2;
+		queue1.addQueue(10);
+		bool result = identicalQueue(queue1, queue2);
+		assert(result == false);
 	}
+	
+	// Test case 3: Both queues contain the same elements
+	{
+		queueType<int> queue1, queue2;
+		queue1.addQueue(10);
+		queue1.addQueue(20);
+		queue1.addQueue(30);
+		queue2.addQueue(10);
+		queue2.addQueue(20);
+		queue2.addQueue(30);
+		bool result = identicalQueue(queue1, queue2);
+		assert(result == true);
+	}
+	
+	// Test case 4: The queues contain different elements
+	{
+		queueType<int> queue1, queue2;
+		queue1.addQueue(10);
+		queue1.addQueue(20);
+		queue1.addQueue(30);
+		queue2.addQueue(10);
+		queue2.addQueue(40);
+		queue2.addQueue(30);
+		bool result = identicalQueue(queue1, queue2);
+		assert(result == false);
+	}
+	
+	// Test case 5: The queues are different sizes
+	{
+		queueType<int> queue1, queue2;
+		queue1.addQueue(10);
+		queue1.addQueue(20);
+		queue2.addQueue(10);
+		bool result = identicalQueue(queue1, queue2);
+		assert(result == false);
+	}
+	
+	// Test case 6: Identical queues with char elements
+	queueType<char> queue1, queue2;
+	queue1.addQueue('a');
+	queue1.addQueue('b');
+	queue1.addQueue('c');
+	queue2.addQueue('a');
+	queue2.addQueue('b');
+	queue2.addQueue('c');
+	bool result = identicalQueue(queue1, queue2);
+	assert(result == true);
 }
 
 static void test_replaceItem()

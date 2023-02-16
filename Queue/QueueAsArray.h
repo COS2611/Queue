@@ -268,12 +268,17 @@ bool identicalQueueIterative(queueType<Type> &queue1, queueType<Type> &queue2)
 	return true;	// returns true when both queues are empty
 }
 
-
-// L = {a^n b^n+1}
-bool isInLanguageLQ2(std::string w)
+// L = {a^n b^n}
+bool isInLanguageLQ(std::string w)
 {
 	queueType<char> q;
 	int index = 0;
+	
+	// min word length: 2
+	if (w.length() < 2)
+	{
+		return false;
+	}
 	
 	while (w[index] == 'a')
 	{
@@ -281,9 +286,88 @@ bool isInLanguageLQ2(std::string w)
 		index++;
 	}
 	
-	if (w[index] == 'b')
+	while (w[index] == 'b')
+	{
+		if (!q.isEmptyQueue() && q.front() == 'x')
+		{
+			q.deleteQueue();
+		}
+		else
+		{
+			return false;
+		}
+		index++;
+	}
+	return (index == w.length() && q.isEmptyQueue());
+}
+
+// L = {a^n b^n+1}
+bool isInLanguageLQ2(std::string w)
+{
+	queueType<char> q;
+	int index = 0;
+	
+	// min word length: 3
+	if (w.length() < 3)
+	{
+		return false;
+	}
+	
+	while (w[index] == 'a')
 	{
 		q.addQueue('x');
+		index++;
+	}
+	
+	// add an extra 'b'
+	if (w[index] == 'b' && !q.isFullQueue())
+	{
+		q.addQueue('x');
+	}
+	
+	while (w[index] == 'b')
+	{
+		if (!q.isEmptyQueue() && q.front() == 'x')
+		{
+			q.deleteQueue();
+		}
+		else
+		{
+			return false;
+		}
+		index++;
+	}
+	return (index == w.length() && q.isEmptyQueue());
+}
+
+// L = {a^n b^n-1}
+bool isInLanguageLQ3(std::string w)
+{
+	queueType<char> q;
+	int index = 0;
+	
+	// min word length: 1
+	if (w.length() < 1)
+	{
+		return false;
+	}
+	
+	// accept 'a'
+	if (w == "a")
+	{
+		return true;
+	}
+	
+	while (w[index] == 'a')
+	{
+		q.addQueue('x');
+		index++;
+	}
+	
+	// remove an extra 'b'
+	if (w[index] == 'b' && !q.isEmptyQueue())
+	{
+		q.deleteQueue();
 	}
 	
 	while (w[index] == 'b')

@@ -8,30 +8,108 @@
 #ifndef tests_h
 #define tests_h
 
-// test case: COS2611-06-2020: Q5b
+// L = {a^n b^n}
+static void testIsInLanguageLQ()
+{
+	std::string empty = "";
+	std::string a = "a";
+	std::string b = "b";
+	std::string ab = "ab";
+	std::string aab = "aab";
+	std::string abb = "abb";
+	std::string aabb = "aabb";
+	std::string aaaba = "aaaba";
+	std::string aaabb = "aaabb";
+	std::string aabbb = "aabbb";
+	std::string aaabbbb = "aaabbbb";
+	std::string aaaabbbbb = "aaaabbbbb";
+	std::string aaaabbbbba = "aaaabbbbba";
+	std::string aaababbbbb = "aaababbbbb";
+	assert(isInLanguageLQ(empty) == false);
+	assert(isInLanguageLQ(a) == false);
+	assert(isInLanguageLQ(b) == false);
+	assert(isInLanguageLQ(ab) == true);
+	assert(isInLanguageLQ(aab) == false);
+	assert(isInLanguageLQ(abb) == false);
+	assert(isInLanguageLQ(aabb) == true);
+	assert(isInLanguageLQ(aaaba) == false);
+	assert(isInLanguageLQ(aaabb) == false);
+	assert(isInLanguageLQ(aabbb) == false);
+	assert(isInLanguageLQ(aaabbbb) == false);
+	assert(isInLanguageLQ(aaaabbbbb) == false);
+	assert(isInLanguageLQ(aaaabbbbba) == false);
+	assert(isInLanguageLQ(aaababbbbb) == false);
+	
+}
+
+// test case: COS2611-06-2020: Q4.1
+// L2 = {a^n b^n+1}
 static void testIsInLanguageLQ2()
 {
-	std::string a = "abb";
-	std::string b = "aabbb";
-	std::string c = "aaaabbbbb";
-	std::string d = "aaaabbbbba";
-	std::string e = "aaaabbbbb";
-	std::string f = "aaababbbbb";	// FIXME: this string should be rejected
-	std::string g = "aaaabbbbba";
-	std::string s1 = isInLanguageLQ2(a) ? " is ACCEPTED" : " is REJECTED";
-	std::string s2 = isInLanguageLQ2(b) ? " is ACCEPTED" : " is REJECTED";
-	std::string s3 = isInLanguageLQ2(c) ? " is ACCEPTED" : " is REJECTED";
-	std::string s4 = isInLanguageLQ2(d) ? " is ACCEPTED" : " is REJECTED";
-	std::string s5 = isInLanguageLQ2(e) ? " is ACCEPTED" : " is REJECTED";
-	std::string s6 = isInLanguageLQ2(f) ? " is ACCEPTED" : " is REJECTED";
-	std::string s7 = isInLanguageLQ2(g) ? " is ACCEPTED" : " is REJECTED";
-	std::cout << a + s1 << std::endl;
-	std::cout << b + s2 << std::endl;
-	std::cout << c + s3 << std::endl;
-	std::cout << d + s4 << std::endl;
-	std::cout << e + s1 << std::endl;
-	std::cout << f + s2 << std::endl;
-	std::cout << g + s3 << std::endl;
+	std::string empty = "";
+	std::string a = "a";
+	std::string b = "b";
+	std::string ab = "ab";
+	std::string aab = "aab";
+	std::string abb = "abb";
+	std::string aabb = "aabb";
+	std::string aaaba = "aaaba";
+	std::string aaabb = "aaabb";
+	std::string aabbb = "aabbb";
+	std::string aaabbbb = "aaabbbb";
+	std::string aaaabbbbb = "aaaabbbbb";
+	std::string aaaabbbbba = "aaaabbbbba";
+	std::string aaababbbbb = "aaababbbbb";
+	assert(isInLanguageLQ2(empty) == false);
+	assert(isInLanguageLQ2(a) == false);
+	assert(isInLanguageLQ2(b) == false);
+	assert(isInLanguageLQ2(ab) == false);
+	assert(isInLanguageLQ2(aab) == false);
+	assert(isInLanguageLQ2(abb) == true);
+	assert(isInLanguageLQ2(aabb) == false);
+	assert(isInLanguageLQ2(aaaba) == false);
+	assert(isInLanguageLQ2(aaabb) == false);
+	assert(isInLanguageLQ2(aabbb) == true);
+	assert(isInLanguageLQ2(aaabbbb) == true);
+	assert(isInLanguageLQ2(aaaabbbbb) == true);
+	assert(isInLanguageLQ2(aaaabbbbba) == false);
+	assert(isInLanguageLQ2(aaababbbbb) == false);
+	
+}
+
+// L = {a^n b^n-1}
+static void testIsInLanguageLQ3()
+{
+	std::string empty = "";
+	std::string a = "a";
+	std::string b = "b";
+	std::string ab = "ab";
+	std::string aab = "aab";
+	std::string abb = "abb";
+	std::string aabb = "aabb";
+	std::string aaaba = "aaaba";
+	std::string aaabb = "aaabb";
+	std::string aabbb = "aabbb";
+	std::string aaabbbb = "aaabbbb";
+	std::string aaaabbbbb = "aaaabbbbb";
+	std::string aaaabbbbba = "aaaabbbbba";
+	std::string aaababbbbb = "aaababbbbb";
+	assert(isInLanguageLQ3(empty) == false);
+	assert(isInLanguageLQ3(a) == true);
+	assert(isInLanguageLQ3(b) == false);
+	assert(isInLanguageLQ3(ab) == false);
+	assert(isInLanguageLQ3(aab) == true);
+	assert(isInLanguageLQ3(abb) == false);
+	assert(isInLanguageLQ3(aabb) == false);
+	assert(isInLanguageLQ3(aaaba) == false);
+	assert(isInLanguageLQ3(aaabb) == true);
+	assert(isInLanguageLQ3(aabbb) == false);
+	assert(isInLanguageLQ3(aaabbbb) == false);
+	assert(isInLanguageLQ3(aaaabbbbb) == false);
+	assert(isInLanguageLQ3(aaaabbbbba) == false);
+	assert(isInLanguageLQ3(aaababbbbb) == false);
+	
+	
 }
 
 static void testIdenticalQueue()

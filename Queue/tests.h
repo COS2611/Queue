@@ -435,4 +435,26 @@ static void test_replaceEverySecondItem()
 }
 
 
+static void test_oddQ()
+{
+	queueType<int> myQueue;
+	
+	myQueue.addQueue(1);
+	myQueue.addQueue(2);
+	myQueue.addQueue(3);
+	myQueue.addQueue(4);
+	myQueue.addQueue(5);
+	
+	std::cout << "My queue before oddQ: ";
+	myQueue.printQueue();
+	std::cout << std::endl;
+	
+	oddQ(myQueue);
+	
+	std::cout << "My queue after oddQ: ";
+	myQueue.printQueue();
+	std::cout << std::endl;
+}
+
+
 #endif /* tests_h */

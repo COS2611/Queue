@@ -48,8 +48,9 @@ int main()
 	testIsInLanguageLQ3();
 	testIdenticalQueue();
 	testIdenticalQueueIterative();
-//	test_replaceItem();
-//	test_replaceEverySecondItem();
+	test_replaceItem();
+	test_replaceEverySecondItem();
+	test_oddQ();
 	
 	return 0;
 }

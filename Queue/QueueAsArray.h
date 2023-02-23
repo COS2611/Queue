@@ -462,5 +462,31 @@ void replaceItem(queueType<Type>& queue, const Type& oldItem, const Type& newIte
 	}
 }
 
+template <class Type>
+void oddQ(queueType<Type> &q)
+{
+	// function removes every second element in the queue,
+	// while retaining the original order
+		
+	queueType<Type> tempQ;
+	while (!q.isEmptyQueue())
+	{
+		// add current element to tempQ
+		tempQ.addQueue(q.front());
+		q.deleteQueue();
+		
+		// remove the next element from the original queue
+		if (!q.isEmptyQueue())
+		{
+			q.deleteQueue();
+		}
+	}
+	
+	while (!tempQ.isEmptyQueue())
+	{
+		q.addQueue(tempQ.front());
+		tempQ.deleteQueue();
+	}
+}
 
 #endif
